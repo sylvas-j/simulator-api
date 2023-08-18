@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block main_page_title %}
+{{ main_page_title }}
+{% endblock main_page_title %}
+
+{% block breadcumb %}
+<li><a href="{% url 'court_cases_classification:download_page' %}">{{ panel_name }}</a></li>
+{% endblock breadcumb %}
+
+{% block panel_title %}
+{{ panel_title }}
+{% endblock panel_title %}
+
+{% block panel %}
+<div class="col-md-12" id="selectForm">
+    <div class="panel">
+        <div class="panel-heading">
+            <div class="panel-title">
+                <h5>{{ panel_title }}</h5>
+            </div>
+        </div>
+        
+        <div class="panel-body">
+            <p>Declaimer: This model simulator is just for learning purpose and not for any commercial reason.
+                <br>
+                NB: The model performance is subject to more improvement.
+                <br>
+                You can reach me on <b><a href="mailto:sylvanusjerome@gmail.com">sylvanusjerome@gmail.com</a></b> for enquiry and suggestions
+            </p>
+            <p>Court Case Simulator is built on a model trained with different 
+                coust cases result with datasets gotten from <b><a href="https://sherloc.unodc.org/cld//v3/sherloc/cldb/search.html?lng=en#" class="link-primary">sherloc</a></b> website.
+            <br>
+                The dataset consist of three features (text, crime types and sentence status).
+            <br>
+                To used the simulator:
+                <ol>
+                    <li>Just paste your court case text into the text box</li>
+                    <li>Or you can upload your cases from a csv or excel file using the upload button.</li>
+                </ol>
+                <b>NB: Your text in an excel file should start from (A1 ceil) down; only on the A column without any formatting</b>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+{% endblock panel %}
+

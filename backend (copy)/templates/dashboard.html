@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+
+{% block main_page_title %}
+    Models Simulator
+{% endblock main_page_title %}
+    
+
+{% block main_page_content %}
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <a class="dashboard-stat bg-primary" href="{% url 'smart_home_monitoring:dashboard' %}">
+    
+                <span class="number counter">1000</span>
+                <span class="name">Model</span>
+                <span class="bg-icon"><i class="fa fa-users"></i></span>
+            </a>
+            <!-- /.dashboard-stat -->
+        </div>
+        <!-- /.col-lg-3 col-md-3 col-sm-6 col-xs-12 -->
+    
+    </div>
+    <!-- /.row -->
+{% endblock main_page_content %}
+
+{% block javascript_code %}
+    <script>
+        $(function () {
+
+            // Counter for dashboard stats
+            $('.counter').counterUp({
+                delay: 10,
+                time: 1000
+            });
+
+            // Welcome notification
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            toastr["success"]("Welcome to student Result Management System!");
+
+        });
+    </script>
+{% endblock javascript_code %}
+    

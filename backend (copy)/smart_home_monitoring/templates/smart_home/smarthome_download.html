@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block main_page_title %}
+{{ main_page_title }}
+{% endblock main_page_title %}
+
+{% block breadcumb %}
+<li><a href="{% url 'smart_home_monitoring:download_page' %}">{{ panel_name }}</a></li>
+{% endblock breadcumb %}
+
+{% block panel_title %}
+{{ panel_title }}
+{% endblock panel_title %}
+
+{% block panel %}
+<div class="col-md-12" id="selectForm">
+    <div class="panel">
+        <div class="panel-heading">
+            <div class="panel-title">
+                <h5>{{ panel_title }}</h5>
+            </div>
+        </div>
+        <div class="panel-body">
+            <form action="."
+                method="POST"
+                enctype="multipart/form-data"
+                class="post-form col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-auto shadow d-flex flex-column
+                justify-content-center
+                align-items-center
+                bg-light
+                px-3 pt-3 pb-0"
+                id="ResultForm" 
+                data-url="{% url 'court_cases_classification:court_case' %}"
+                novalidate>
+
+                {% csrf_token %}
+
+                <button type="submit" id="check" 
+                  class="save btn btn-success rounded-0 shadow mt-2 mb-1">
+                  <a href="{% url 'smart_home_monitoring:download' %}">Download All Records</a>
+                </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock panel %}
+
+
+{% block javascript_code %}
+<script>
+</script>
+
+{% endblock javascript_code %}

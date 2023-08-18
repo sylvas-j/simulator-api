@@ -1,0 +1,39 @@
+<div class="sidebar-nav">
+    <ul class="side-nav color-gray">
+        <li class="nav-header">
+            <span class="">Main Category</span>
+        </li>
+        <li>
+            <a href="{% url 'smart_home_monitoring:dashboard' %}"><i class="fa fa-dashboard"></i> <span>Dashboard</span> </a>
+
+        </li>
+
+        <li class="nav-header">
+            <span class="">Appearance</span>
+        </li>
+
+        <li class="has-children">
+            <a href="{% url 'smart_home_monitoring:dashboard' %}"><i class="fa fa-file-text"></i> <span>Smart Home</span> <i class="fa fa-angle-right arrow"></i></a>
+            <ul class="child-nav">
+                
+                <li><a href="{% url 'smart_home_monitoring:upload_data' %}"><i class="fa fa fa-server"></i> <span>Actual $ Predicted</span></a></li>
+                <li><a href="{% url 'smart_home_monitoring:download_page' %}"><i class="fa fa fa-server"></i> <span>Download Records</span></a></li>
+                <li><a href="{% url 'smart_home_monitoring:about' %}"><i class="fa fa fa-server"></i> <span>About</span></a></li>
+            </ul>
+        </li>
+        <li class="has-children">
+            <a href="{% url 'smart_home_monitoring:dashboard' %}"><i class="fa fa-file-text"></i> <span>Court Cases</span> <i class="fa fa-angle-right arrow"></i></a>
+            <ul class="child-nav">
+                
+                <li><a href="{% url 'court_cases_classification:court_case' %}"><i class="fa fa fa-server"></i> <span>Actual $ Predicted</span></a></li>
+                <li><a href="{% url 'court_cases_classification:download_page' %}"><i class="fa fa fa-server"></i> <span>Download Records</span></a></li>
+                <li><a href="{% url 'court_cases_classification:about' %}"><i class="fa fa fa-server"></i> <span>About</span></a></li>
+            </ul>
+        </li>
+    
+        <li>
+            <a href="{% url 'smart_home_monitoring:dashboard' %}"><i class="fa fa fa-server"></i> <span>Change Password</span></a>
+        </li>
+
+    </ul>
+</div>

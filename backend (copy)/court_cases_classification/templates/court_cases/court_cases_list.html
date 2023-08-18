@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block main_page_title %}
+{{ main_page_title }}
+{% endblock main_page_title %}
+
+{% block breadcumb %}
+<li><a href="{% url 'court_cases_classification:court_case' %}">{{ panel_name }}</a></li>
+<li class="active">{{ panel_title }}</li>
+{% endblock breadcumb %}
+
+{% block panel_title %}
+{{ panel_title }}
+{% endblock panel_title %}
+
+{% block panel %}
+{% if not object_list %}
+<div class="col-md-12" id="selectForm">
+    <div class="panel">
+        <div class="panel-heading">
+            <div class="panel-title">
+                <h5>{{ panel_title }}</h5>
+            </div>
+        </div>
+        <div class="panel-body">
+            <form action="."
+                method="POST"
+                enctype="multipart/form-data"
+                class="post-form col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-auto shadow d-flex flex-column
+                justify-content-center
+                align-items-center
+                bg-light
+                px-3 pt-3 pb-0"
+                id="ResultForm" 
+                data-url="{% url 'court_cases_classification:court_case' %}"
+                novalidate>
+
+                {% csrf_token %}
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="section"> Text:</label>
+                      {{form.text}}
+                </div>
+
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="semester">File:</label>
+                      {{form.excel_file}}
+                </div>
+
+                <div class="ajax_load">
+                
+                
+                <button type="submit" id="check" 
+                  class="save btn btn-success rounded-0 shadow mt-2 mb-1">
+                  Check
+                </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% else %}
+
+{% include 'includes/manage_panel_top.html' %}
+{% for case,status,type in object_list %}
+<tr role="row" class="odd">
+<td class="">{{ forloop.counter }}</td>
+    {% if status == 'Not Sentence' %}
+
+    <td class="text-success">{{ case}}</td>
+    <td class="text-success">{{ status}}</td>
+    <td class="text-success">{{ type }}</td>
+    {% else %}
+    <td class="text-danger">{{ case}}</td>
+    <td class="text-danger">{{ status}}</td>
+    <td class="text-danger">{{ type }}</td>
+    {% endif %}
+
+    <td>
+        <a href="#" class="btn btn-primary disabled"><i class="fa fa-edit" title="View Result"></i>
+        </a>
+
+    </td>
+</tr>
+{% endfor %}
+{% include 'includes/manage_panel_bottom.html' %}
+
+{% endif %}
+
+{% endblock panel %}
+
+
+{% block javascript_code %}
+<script>
+</script>
+
+{% endblock javascript_code %}

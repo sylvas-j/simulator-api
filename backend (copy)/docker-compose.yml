@@ -1,0 +1,91 @@
+version: '3.7'
+# set project name
+# name: mod-sim-con
+services: # the different images that will be running as containers
+  mod_nginx: # service name
+
+# location of the dockerfile that defines the nginx image. The dockerfile will be used to spin up an image during the build stage.
+    build: ./nginx
+    image: mod-sim-nginx
+    container_name: mod-sim-con-nginx
+
+# map the machine port 8181 to the container port 80. Any traffic from 8181 externally will be passed to port 80 of the NGINX container. You can access this container viea localhost:8181
+    ports: 
+      - 8181:80
+
+
+# static storages provisioned since django does not handle static files in production
+    volumes:  
+      - static_volume:/${WORK_DIR}/static
+      - media_volume:/${WORK_DIR}/media
+    # links:
+    #   - web:web
+
+# will only start if web is up and running
+    depends_on: 
+      - mod_web 
+
+    # networks:
+    #     main:
+    #         aliases:
+    #             - nginx
+
+# restart service when it fails
+    restart: "on-failure" 
+
+  mod_web: # service name
+
+#build the image for the web service from the dockerfile in parent directory.  
+    build: .
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+
+# name of the image
+    image: mod-sim-web
+    container_name: mod-sim-con-web
+
+# command directive passes the parameters to the service and they will be executed by the service. In this example, these are django commands which will be executed in the container where django lives.
+    # command: sh -c "python manage.py makemigrations &&
+    #                 python manage.py migrate &&
+    #                 gunicorn models_simulator.wsgi:application --bind 0.0.0.0:${APP_PORT}" 
+
+# map data and files from parent directory in host to microservice directory in docker container
+    volumes: 
+      - .:/${WORK_DIR} 
+      - static_volume:/${WORK_DIR}/static
+      - media_volume:/${WORK_DIR}/media
+
+# file where env variables are stored. Used as best practice so as not to expose secret keys
+    env_file: 
+      - .env # name of the env file
+
+# expose the port to other services defined here so that they can access this service via the exposed port. In the case of Django, this is 8000 by default
+    expose: 
+      - ${APP_PORT} # retrieved from the .env file
+
+    ports: 
+      - 8282:80
+    
+
+    restart: "on-failure"
+
+    # networks:
+    #     main:
+    #         aliases:
+    #             - web
+
+# cannot start if db service is not up and running
+    # depends_on: 
+    #   - mod_db
+
+
+
+  
+volumes:
+  static_volume:
+  # mysql_volume:
+  media_volume:
+
+# networks:
+#   main:
