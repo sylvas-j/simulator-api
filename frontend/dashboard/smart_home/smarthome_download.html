@@ -1,0 +1,59 @@
+<div class="col-md-12" id="selectForm">
+    <div class="panel">
+        <div class="panel-heading">
+            <div class="panel-title">
+                <h5>Download Smart Home Model Data</h5>
+            </div>
+        </div>
+        <div class="panel-body">
+            <form action="."
+                method="POST"
+                enctype="multipart/form-data"
+                class="post-form col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-auto shadow d-flex flex-column
+                justify-content-center
+                align-items-center
+                bg-light
+                px-3 pt-3 pb-0"
+                id="ResultForm" 
+                data-url="{% url 'court_cases_classification:court_case' %}"
+                novalidate>
+
+                <button type="button" id="download" 
+                  class="save btn btn-success rounded-0 shadow mt-2 mb-1">Download All Records
+                </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script> 
+<!-- ========== COMMON JS FILES ========== -->
+<!-- <script src="static/js/jquery/jquery-2.2.4.min.js"></script> -->
+<script src="dashboard/static/js/main.js"></script>
+
+<script>
+// Predict
+subb = document.getElementById('download');
+url = 'http://localhost:8000/simulators/dashboard/smart-home/download';
+subb.onclick = function(e) {  
+	e.preventDefault;
+    fetch(url)
+    .then(function(response) {
+    if (response.status >= 200 && response.status < 300){
+        return response.blob()
+    }throw new Error(response.statusText)
+    }).then(function(blob){
+        // console.log(blob)
+        // downloadFile(blob);
+        a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.setAttribute("download", 'smart home.xlsx');
+        a.click();
+    }).catch(console.error);
+	
+};
+
+
+</script> 

@@ -1,0 +1,146 @@
+
+<div class="col-md-12" id="selectForm">
+    <div class="panel">
+        <div class="panel-heading">
+            <div class="panel-title">
+                <h5>Make Predictions <span id="predspan"></span></h5>
+            </div>
+        </div>
+        <div class="panel-body">
+            <form action="."
+                method="POST"
+                enctype="multipart/form-data"
+                class="post-form col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-auto shadow d-flex flex-column
+                justify-content-center align-items-center
+                bg-light px-3 pt-3 pb-0"
+                id="ResultForm" 
+                data-url="{% url 'smart_home_monitoring:upload_data' %}"
+                novalidate>
+
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="semester">File:</label>
+                  <input type="file" class="form-control">
+                </div>
+
+                <div class="ajax_load">
+                
+                
+                <button type="button" id="check" 
+                  class="save btn btn-success rounded-0 shadow mt-2 mb-1">
+                  Predict
+                </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="col-md-12">
+    <div class="panel">
+        <div class="panel-heading">
+            <div class="panel-title">
+                <h5">Predictions</h5>
+            </div>
+        </div>
+        <div class="panel-body p-20">
+            <div id="example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                <div class="row">
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table id="example" class="display table table-striped table-bordered dataTable" cellspacing="0" width="100%"
+                            role="grid" aria-describedby="example_info" style="width: 100%;">
+                            <thead>
+                                <tr role="row">
+                                    <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="#: activate to sort column ascending"
+                                        style="width: 30px;">#</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="{{ field }}: activate to sort column ascending"
+                                        style="width: auto;">Actual</th>            
+                                    <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending"
+                                        style="width: 86px;">Predicted</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th rowspan="1" colspan="1">#</th>
+                                    <th rowspan="1" colspan="1">Actual</th>            
+                                    <th rowspan="1" colspan="1">Predicted</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                <tr role="row" class="odd">
+                                <td class="">#</td>
+                                    <td class="text-danger">---</td>
+                                    <td class="text-danger">---</td>
+
+                                    <td>
+                                        <a href="#" class="btn btn-primary disabled">
+                                            <i class="fa fa-edit" title="View Result"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script> 
+<!-- ========== COMMON JS FILES ========== -->
+<!-- <script src="static/js/jquery/jquery-2.2.4.min.js"></script> -->
+<script src="dashboard/static/js/main.js"></script>
+
+
+<script>  
+// Predict
+subb = document.getElementById('check');
+url = 'http://localhost:8000/simulators/dashboard/smart-home/predictions';
+
+subb.onclick = function(e) {  
+	e.preventDefault;
+	// var text_v = $('#text').val();
+    const fileField = document.querySelector('input[type="file"]');
+    var res = document.querySelector('tbody');
+
+    const formData_v = new FormData();
+    console.log(fileField.files[0])
+    // formData_v.append('text', text_v);
+    formData_v.append('file', fileField.files[0]);
+
+	// data = JSON.stringify({'text':text_v,'excel_file':excel_v})
+	let fetchData = {
+	  method: 'POST',
+	  body: formData_v,
+	//   headers: json_header,
+      contentType: false,
+      processData: false,
+	}
+    fetch(url, fetchData)
+    .then(function(response) {
+        return response.json()
+    }).then(function(data){
+        console.log(data)
+        $('#predspan').html(data.message)
+        dd = data.data
+        // console.log(dd.length);
+        res.innerHTML = ''
+        for(var i=0; i < dd.length; i++){
+            const color = dd[i][0] != dd[i][1] ? "danger" : "success";
+            var output = '<tr role="row" class="odd">'
+            output += '<td class="">'+(i+1)+'</td>'
+            output += '<td class="text-'+color+'">'+dd[i][0]+'</td>'
+            output += '<td class="text-'+color+'">'+dd[i][1]+'</td>'
+            output += '</tr>';
+            res.innerHTML += output;
+        };
+    });
+	
+};
+
+
+</script> 

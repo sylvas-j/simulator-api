@@ -1,0 +1,64 @@
+<div class="sidebar-nav">
+    <ul class="side-nav color-gray">
+        <li class="nav-header">
+            <span class="">Main Category</span>
+        </li>
+        <li>
+            <a href="index.html"><i class="fa fa-dashboard"></i> <span>Dashboard</span> </a>
+
+        </li>
+
+        <li class="nav-header">
+            <span class="">Appearance</span>
+        </li>
+
+        <li class="has-children">
+            <a href="#"><i class="fa fa-file-text"></i> <span>Smart Home</span> <i class="fa fa-angle-right arrow"></i></a>
+            <ul class="child-nav">
+                <li><a href="#" id="smart_home_pred"><i class="fa fa fa-server"></i> <span>Actual & Predicted</span></a></li>
+                <li><a href="#" id="smart_home_down"><i class="fa fa fa-server"></i> <span>Download Records</span></a></li>
+                <li><a href="#" id="smart_home_about"><i class="fa fa fa-server"></i> <span>About</span></a></li>
+            </ul>
+        </li>
+        <li class="has-children">
+            <a href="#"><i class="fa fa-file-text"></i> <span>Court Cases</span> <i class="fa fa-angle-right arrow"></i></a>
+            <ul class="child-nav"> 
+                <li><a href="#" id="court_cases_pred"><i class="fa fa fa-server"></i> <span>Prediction</span></a></li>
+                <li><a href="#" id="court_cases_down"><i class="fa fa fa-server"></i> <span>Download Records</span></a></li>
+                <li><a href="#"  id="court_cases_about"><i class="fa fa fa-server"></i> <span>About</span></a></li>
+            </ul>
+        </li>
+    
+        <!-- <li>
+            <a href="{% url 'smart_home_monitoring:dashboard' %}"><i class="fa fa fa-server"></i> <span>Change Password</span></a>
+        </li> -->
+
+    </ul>
+</div>
+
+
+
+<script>
+    // Smart home links
+    document.querySelector('#smart_home_pred').onclick = function(e){
+        $('#row-content').load('smart_home/smarthome_list.html');
+    };
+    document.querySelector('#smart_home_down').onclick = function(e){
+        $('#row-content').load('smart_home/smarthome_download.html');
+    };
+    document.querySelector('#smart_home_about').onclick = function(e){
+        $('#row-content').load('smart_home/smarthome_about.html');
+    };
+
+    // Court cases link
+    document.querySelector('#court_cases_pred').onclick = function(e){
+        $('#row-content').load('court_cases/court_cases_list.html');
+    };
+    document.querySelector('#court_cases_down').onclick = function(e){
+        $('#row-content').load('court_cases/court_cases_download.html');
+    };
+    document.querySelector('#court_cases_about').onclick = function(e){
+        $('#row-content').load('court_cases/court_cases_about.html');
+    };
+
+</script>

@@ -1,0 +1,80 @@
+
+<div id="header"></div>
+
+<body class="top-navbar-fixed">
+<div class="main-wrapper">
+        <div class="content-wrapper">
+            <div class="content-container">
+                <div class="left-sidebar bg-black-300 box-shadow ">
+                    <div class="sidebar-content">
+                        <div class="user-info closed">
+                            <img src="static/images/ml-simulator.jpg" alt="Simulator" class="img-circle profile-img " width="100px" height="100px">
+                            <h6 class="title">Admin</h6>
+                            <small class="info">Simulator</small>
+                        </div>
+                        <!-- /.user-info -->
+                        <div id="sidebar_nav"></div>
+                        <!-- /.sidebar-nav -->
+                    </div>
+                    <!-- /.sidebar-content -->
+                </div>
+                <div class="main-page">
+                    <div class="container-fluid">
+                        <div class="row page-title-div">
+                            <div class="col-sm-6">
+                                <h2 class="title">ML Models Simulator</h2>
+                            </div>
+                            <!-- For alert message -->
+                            <!-- <p id="messages">alert</p> -->
+                        </div>
+                        <!-- /.row -->
+                        <div class="row breadcrumb-div">
+                            <div class="col-md-6">
+                                <ul class="breadcrumb">
+                                    <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                                </ul>
+                            </div>
+        
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.container-fluid -->
+                    <section class="section">
+                        <div class="container-fluid">
+                            <div class="row" id="dashboard">
+                                <div class="col-md-12" id="row-content">
+
+                                </div>
+                                <!-- /.col-md-8 col-md-offset-2 -->
+                            </div>
+                            <!-- /.row -->        
+                        </div>
+                        <!-- /.container-fluid -->
+                    </section>
+                    <!-- /.section -->
+                </div>
+                <!-- /.main-page -->
+            </div>
+            <!-- /.content-container -->
+        </div>
+        <!-- /.content-wrapper -->
+    <div id="nav"></div>        
+</div>
+<!-- /.main-wrapper -->  
+<div id="footer"></div>
+
+</body>
+<!-- <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script> -->
+<script src="//code.jquery.com/jquery-1.10.2.js"></script> 
+      <script>  
+      $(function(){ 
+        $("#header").load("snipets/header_static_files.html");  
+        $("#footer").load("snipets/footer_static_files.html");
+        $("#nav").load("snipets/nav.html");
+        $("#sidebar_nav").load("snipets/sidebar_nav.html");
+        $("#row-content").load("dashboard.html");
+        
+      }); 
+
+      </script> 
+</html>
