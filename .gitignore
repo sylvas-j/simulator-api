@@ -1,0 +1,58 @@
+# Python
+*.pyc
+*~
+__pycache__
+
+# Env
+#.env
+myvenv/
+venv/
+
+# Database
+# db.sqlite3
+
+bin
+
+# Static folder at project root
+# /static/
+/srms_project/settings/development.py
+/srms_project/media/
+/staticfiles/
+/media/result_files
+/bin/
+/lib/
+/share/
+lib64
+pyvenv.cfg
+
+# macOS
+._*
+.DS_Store
+.fseventsd
+.Spotlight-V100
+
+# Windows
+Thumbs.db*
+ehthumbs*.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+# Visual Studio
+.vscode/
+.history/
+*.code-workspace
+
+*.pyc
+
+myvenv
+
+__pycache__
+
+local_settings.py
+
+#files
+*.pdf
+*.xlsx
+# *.png
+# *.jpg
+# *.jpeg

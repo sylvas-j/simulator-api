@@ -1,2 +1,2 @@
-cd /opt/lampp/htdocs/mod-sim/frontend
-cd /opt/lampp/htdocs/mod-sim/backend
+cd /opt/lampp/htdocs/mod-sim-api/frontend
+cd /opt/lampp/htdocs/mod-sim-api/backend
